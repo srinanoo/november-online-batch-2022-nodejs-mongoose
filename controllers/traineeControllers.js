@@ -32,8 +32,30 @@ const showTrainee = (req, res) => {
     }
 };
 
-const addTrainee = (req, res) => {
-    res.send("Add Trainee - from Routes");
+const addTrainee = async (req, res) => {
+    // res.send("Add Trainee - from Routes");
+
+    const Trainee = new TraineeModel(req.body);
+
+    try {
+        // TraineeModel.find({"username": req.body.username})
+        //     .then(async trainees => {
+        //         if(trainees.length > 0)
+        //             res.json("Trainee Already Exists!")
+        //         else {
+                    await Trainee.save();
+                    res.json("Trainee Added Successfully!");
+            //     }
+            // });
+    } catch (err) {
+        let errorList = [];
+        if(err.errors) {
+            for(let temp in err.errors) {
+                errorList.push(err.errors[temp].message);
+            }
+        }
+        res.json(errorList);
+    }
 };
 
 const updateTrainee = (req, res) => {

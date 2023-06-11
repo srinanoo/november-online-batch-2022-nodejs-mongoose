@@ -41,7 +41,8 @@ const traineeSchema = new Schema({
         default: Date.now()
     },
     age: {
-        type: Number
+        type: Number,
+        min: [18, 'Age must be at least 18']
     }
 });
 
