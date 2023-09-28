@@ -13,7 +13,7 @@ app.use("/trainees", TraineesRoute);
 
 // Default Unhandled Request
 app.use("/*", (req, res) => {
-    res.send("Invalid Route!!!");
+    res.send("Invalid Route for this API call!!!");
 });
 
 app.listen(process.env.PORT, () => {
